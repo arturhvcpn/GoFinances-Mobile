@@ -10,18 +10,38 @@ import {
     DateOfTransaction,
 } from './styles';
 
-export function TransactionCard(){
+interface ICategoryProps{
+    name:string;
+    icon:string;
+}
+
+export interface IDataProps {
+    type: 'positive' | 'negative';
+    title:string;
+    amount:string;
+    category:ICategoryProps;
+    date:string;
+}
+
+interface ITransactionCardProps{
+    data: IDataProps;
+}
+
+export function TransactionCard({ data }:ITransactionCardProps){
     return (
         <Container>
-            <Title>Desenvolvimento de site</Title>
-            <Amount>R$ 12.000,00</Amount>
+            <Title>{data.title}</Title>
+            <Amount typeTransaction={data.type}>
+                {data.type === 'negative' && '- '}
+                {data.amount}
+            </Amount>
 
             <Footer>
                 <Category>
-                    <Icon name='dollar-sign' />
-                    <CategoryName>Vendas</CategoryName>
+                    <Icon name={data.category.icon} />
+                    <CategoryName>{data.category.name}</CategoryName>
                 </Category>
-                <DateOfTransaction>13/04/2020</DateOfTransaction>
+                <DateOfTransaction>{data.date}</DateOfTransaction>
             </Footer>
         </Container>
     )
