@@ -14,7 +14,8 @@ import {
     HighlightCards,
     Transactions,
     Title,
-    TransactionList
+    TransactionList,
+    LogoutButton
 } from './styles';
 
 export interface IDataListIdProps extends IDataProps{
@@ -70,7 +71,9 @@ export function Dashboard(){
                             <UserName>Artur</UserName>
                         </User>
                     </UserInfo>
-                    <Icon name="power"/>
+                    <LogoutButton onPress={() => {}}>
+                        <Icon name="power"/>
+                    </LogoutButton>
                 </UserWrapper>
             </Header>
             <HighlightCards>

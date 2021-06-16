@@ -4,6 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { IDataListIdProps } from '.';
+import { BorderlessButton } from 'react-native-gesture-handler'
 
 
 export const Container = styled.View`
@@ -59,6 +60,10 @@ export const UserName = styled.Text`
     font-size: ${RFValue(18)}px;
     font-family: ${({theme})=> theme.fonts.bold};
     color: ${({theme})=> theme.colors.shape};
+`;
+
+export const LogoutButton = styled(BorderlessButton)`
+    
 `;
 
 export const Icon = styled(Feather)`
