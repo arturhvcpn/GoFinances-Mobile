@@ -9,17 +9,13 @@ import {
     CategoryName,
     DateOfTransaction,
 } from './styles';
-
-interface ICategoryProps{
-    name:string;
-    icon:string;
-}
+import { categories } from '../../utils/categories';
 
 export interface IDataProps {
     type: 'positive' | 'negative';
-    title:string;
+    name:string;
     amount:string;
-    category:ICategoryProps;
+    category:string;
     date:string;
 }
 
@@ -28,9 +24,13 @@ interface ITransactionCardProps{
 }
 
 export function TransactionCard({ data }:ITransactionCardProps){
+    const [category] = categories.filter(
+        item => item.key === data.category
+    );
+
     return (
         <Container>
-            <Title>{data.title}</Title>
+            <Title>{data.name}</Title>
             <Amount typeTransaction={data.type}>
                 {data.type === 'negative' && '- '}
                 {data.amount}
@@ -38,8 +38,8 @@ export function TransactionCard({ data }:ITransactionCardProps){
 
             <Footer>
                 <Category>
-                    <Icon name={data.category.icon} />
-                    <CategoryName>{data.category.name}</CategoryName>
+                    <Icon name={category.icon} />
+                    <CategoryName>{category.name}</CategoryName>
                 </Category>
                 <DateOfTransaction>{data.date}</DateOfTransaction>
             </Footer>
